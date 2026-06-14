@@ -1,0 +1,16 @@
+﻿development:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_development
+  host: postgres
+  username: canvas
+  password: sekret
+  timeout: 5000
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_test
+  host: postgres
+  username: canvas
+  password: sekret
+  timeout: 5000

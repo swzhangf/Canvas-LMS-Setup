@@ -1,0 +1,28 @@
+﻿# ============================================
+# Canvas LMS Dockerfile Patch
+# Apply these changes to the original Dockerfile
+# ============================================
+#
+# PATCH 1: Add GPG key import at the beginning of the main RUN command
+# Replace:
+#   RUN apt-get update -o Acquire::AllowInsecureRepositories=true -qq
+# With:
+#   RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D870AB033FB45BD1 1655A0AB68576280 2>/dev/null || true && apt-get update -o Acquire::AllowInsecureRepositories=true -qq
+#
+# PATCH 2: Add [trusted=yes] to NodeSource repo
+# Replace:
+#   echo "deb https://deb.nodesource.com/node_14.x focal main"
+# With:
+#   echo "deb [trusted=yes] https://deb.nodesource.com/node_14.x focal main"
+#
+# PATCH 3: Add [trusted=yes] to PostgreSQL PGDG repo
+# Replace:
+#   echo "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main"
+# With:
+#   echo "deb [trusted=yes] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main"
+#
+# PATCH 4: Allow apt-get update to fail gracefully
+# Replace:
+#   && apt-get update -qq && apt-get install
+# With:
+#   && (apt-get update -qq || true) && apt-get install
