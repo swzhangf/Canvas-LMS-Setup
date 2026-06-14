@@ -1,0 +1,4 @@
+﻿development:
+  domain: localhost
+test:
+  domain: localhost
